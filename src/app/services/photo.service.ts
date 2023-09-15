@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 
+import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
+import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Preferences } from '@capacitor/preferences';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -55,10 +59,10 @@ export class PhotoService {
   }
 
   private convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
-  const reader = new FileReader();
-  reader.onerror = reject;
-  reader.onload = () => {
-  resolve(reader.result);
+    const reader = new FileReader();
+    reader.onerror = reject;
+    reader.onload = () => {
+    resolve(reader.result);
   };
   reader.readAsDataURL(blob);
   }); 
@@ -80,11 +84,7 @@ export class PhotoService {
   } 
 } 
 
-import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
-import { Filesystem, Directory } from '@capacitor/filesystem';
-import { Preferences } from '@capacitor/preferences';
-
 export interface UserPhoto {
   filepath: string;
   webviewPath?: string;
- } 
+} 
